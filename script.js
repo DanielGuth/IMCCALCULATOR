@@ -20,15 +20,20 @@ const Button = () =>{
        document.getElementById('output').innerHTML = '<span style = "color:blue;">Acima</span>';
        document.getElementById('imc-output').innerHTML = Total + ' kg/m2'
 
+   }else if (Total <= 34.9){
+    document.getElementById('output').innerHTML = '<span style = "color:blue;">Obesidade I</span>';
+    document.getElementById('imc-output').innerHTML = Total + ' kg/m2'
+
+   }else if (Total <=40){
+    document.getElementById('output').innerHTML = '<span style = "color:blue;">Obesidade II</span>';
+    document.getElementById('imc-output').innerHTML = Total + ' kg/m2'
+
    }else if (weight || height == ''){
     document.getElementById('output').innerHTML = '<span style = "color:gray;">Não definido</span>';
     document.getElementById('imc-output').innerHTML = '<span style  = "color:gray;">Não definido</span>';
-   }
-
-
 }
 
-
+}
 
 
 
