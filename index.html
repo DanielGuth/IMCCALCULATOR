@@ -12,8 +12,9 @@
     <title>Calculo IMC</title>
 </head>
 <body>
+
     <h1 class = 'title-main'>Calcule o seu IMC</h1>
-    <form class = 'questions-imc'>
+    <form class = 'questions-imc'  action = 'script.js' method="get">
         <label for = 'idade'>Idade</label>
         <input class = 'input-1' type  = 'number' id  = 'age' name = 'age' placeholder='Ex: 20' min = '1' max = '100' required autofocus>
         <span class  = 'caption-1'></span>        
@@ -23,7 +24,7 @@
         <label for = 'peso'>Peso</label>
         <input class  = 'input-3'  type = 'number' id = 'weight' name  = 'weight' min = '0' max = '300' step ='0.01' validation-type = 'float' required>
         <span class  = 'caption-3'></span>   
-        <input type = 'button' value = 'Calcular' class  = 'button' onclick='Button()'>
+        <input type = 'button' value = 'Calcular' class  = 'button' id = 'buttonCalculator'>
     </form>
         <div class  = 'output'>
             <span class  ='resultado-title'>Status:</span>
@@ -31,7 +32,47 @@
             <span class = 'state-title'>Resultado:</span>
             <span id = 'imc-output' class  = 'imc-output'></span>
         </div>
-    
+        <script>
+            var button = document.getElementById('buttonCalculator');
+            button.addEventListener('click', CallButton );
+            function CallButton(){
+                let age  = document.getElementById('age').value;
+                let weight  = document.getElementById('weight').value;
+                let height  = document.getElementById('height').value;
+                let CalImc = weight/(height*height)*10000;
+                let Total = CalImc.toFixed(2); 
+                let output = document.getElementById('output').innerHTML = 'Seu IMC é: ' + CalImc + ' Kg/m²';
+                if (Total <= 16.9){
+                    document.getElementById('output').innerHTML = '<span style = color:red;> Muito Abaixo do peso</span>';
+                    document.getElementById('imc-output').innerHTML = Total + ' kg/m²'
+                 }else if (Total <= 18.4){
+                    document.getElementById('imc-output').innerHTML = Total + ' kg/m²'
+                    document.getElementById('output').innerHTML = '<span style = "color:yellow">Abaixo do peso</span>';
+                 }else if (Total <= 24.9){
+                    document.getElementById('output').innerHTML = '<span style = "color:green;">Normal</span>';
+                    document.getElementById('imc-output').innerHTML = Total+ ' kg/m²'
+
+                 }else if (Total <=29.9){
+                     document.getElementById('output').innerHTML = '<span style = "color:blue;">Acima</span>';
+                     document.getElementById('imc-output').innerHTML = Total + ' kg/m²';
+                }else if (Total <= 34.9){
+                     document.getElementById('output').innerHTML = '<span style = "color:blue;">Obesidade I</span>';
+                     document.getElementById('imc-output').innerHTML = Total + ' kg/m²';
+
+                }else if (Total <=40){
+                     document.getElementById('output').innerHTML = '<span style = "color:blue;">Obesidade II</span>';
+                     document.getElementById('imc-output').innerHTML = Total + ' kg/m²';
+
+                }else if (weight || height == ''){
+                     document.getElementById('output').innerHTML = '<span style = "color:gray;">Não definido</span>';
+                     document.getElementById('imc-output').innerHTML = '<span style  = "color:gray;">Não definido</span>';
+                }
+            }
+ 
+            
+           
+            
+        </script>
     
 
 </body>
